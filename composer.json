@@ -1,0 +1,56 @@
+{
+  "name": "astrahttp/swoole-http",
+  "description": "A high-performance, async-first HTTP client for PHP 8.2+ powered by CycleTLS. Features shared worker management, JA3/JA4 fingerprinting, and full streaming support.",
+  "keywords": [
+    "php",
+    "security",
+    "astrahttp",
+    "cycletls",
+    "async",
+    "http-client",
+    "ja3",
+    "fingerprint",
+    "scraping",
+    "amp",
+    "fiber",
+    "revolt-php",
+    "ja3-fingerprint",
+    "crawler"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.2",
+    "amphp/amp": "^3.0",
+    "amphp/byte-stream": "^2.1",
+    "amphp/websocket-client": "^2.0",
+    "revolt/event-loop": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Astra\\SwooleHttp\\": "src/"
+    },
+    "files": [
+      "src/functions.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Astra\\Http\\Tests\\": "tests/"
+    }
+  },
+  "bin": [
+    "bin/astrahttp"
+  ],
+  "authors": [
+    {
+      "name": "Ajmal Alkhaledi",
+      "email": "ajmalalkhaledi@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true
+  }
+}

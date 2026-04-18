@@ -1,0 +1,65 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+$autoloadCandidates = [
+    dirname(__DIR__, 3) . '/autoload.php', 
+    dirname(__DIR__, 4) . '/autoload.php',
+    dirname(__DIR__) . '/vendor/autoload.php',
+    __DIR__ . '/../../autoload.php',
+    __DIR__ . '/../../../autoload.php',
+];
+
+$autoload = null;
+foreach ($autoloadCandidates as $candidate) {
+    if (is_file($candidate)) {
+        $autoload = $candidate;
+        break;
+    }
+}
+
+if ($autoload === null) {
+    fwrite(STDERR, "Error: Unable to locate Composer autoload.php\n");
+    exit(1);
+}
+
+require $autoload;
+
+use Astra\SwooleHttp\WorkerDownloader;
+
+$cmd = $argv[1] ?? 'help';
+
+try {
+    switch ($cmd) {
+        case 'install':
+            WorkerDownloader::install();
+            echo "Worker installed successfully\n";
+            echo WorkerDownloader::getBinaryPath() . PHP_EOL;
+            break;
+
+        case 'status':
+            echo WorkerDownloader::isInstalled() ? "installed\n" : "missing\n";
+            break;
+
+        case 'path':
+            echo WorkerDownloader::getBinaryPath() . PHP_EOL;
+            break;
+
+        case 'ensure':
+            WorkerDownloader::ensureInstalled();
+            echo "ready\n";
+            break;
+
+        default:
+            echo "Usage:\n";
+            echo "  php vendor/bin/astrahttp install\n";
+            echo "  php vendor/bin/astrahttp status\n";
+            echo "  php vendor/bin/astrahttp path\n";
+            echo "  php vendor/bin/astrahttp ensure\n";
+            break;
+    }
+} catch (\Throwable $e) {
+    fwrite(STDERR, "Error: " . $e->getMessage() . PHP_EOL);
+    exit(1);
+}
