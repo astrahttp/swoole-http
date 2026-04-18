@@ -25,8 +25,8 @@ This document explains the package in detail: installation, architecture, API su
 ### Using Composer in a project (Recommended)
 
 ```bash
-composer require astrahttp/http
-php vendor/bin/astrahttp install
+composer require astrahttp/swoole-http
+php vendor/bin/astrahttp-sw install
 ```
 
 ### Installing from source 
