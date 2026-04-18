@@ -1,0 +1,10 @@
+/src-go/ export-ignore
+
+/go.mod export-ignore
+/go.sum export-ignore
+
+
+/exec/ export-ignore
+
+.gitignore export-ignore
+.gitattributes export-ignore
