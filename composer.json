@@ -40,7 +40,7 @@
     }
   },
   "bin": [
-    "bin/astrahttp"
+    "bin/astrahttp-sw"
   ],
   "authors": [
     {
